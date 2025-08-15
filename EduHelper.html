@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHelper - Learning & Productivity Toolkit</title>
+    <link rel="stylesheet" href="EduHelper.css">
+</head>
+<body background="hi.jpg"> <font color="Karbon">
+    <header>
+        <h1>EduHelper - Learning & Productivity Toolkit</h1>
+    </header>
+    <header style="text-align: center; padding-bottom: 1rem;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;"></h1>
+        
+        <!-- Centered Home Button -->
+        <div style="margin-bottom: 1rem;">
+            <button onclick="showSection('homeSection')" id="homeBtn">Home</button>
+
+        </div>
+    <nav>
+        
+        <button onclick="showSection('mathQuiz')">Math Quiz</button>
+        <button onclick="showSection('keyboardTrainer')">Keyboard Shortcuts</button>
+        <button onclick="showSection('unitConverter')">Unit Converter</button>
+        <button onclick="showSection('calculatorSection')">Calculator</button>
+        <button onclick="showSection('bmiCalculator')">BMI Calculator</button>
+        <button onclick="showSection('currencyConverter')">Currency Converter</button>
+        <button onclick="showSection('stopwatchTimer')">Stopwatch & Timer</button>
+        <button onclick="showSection('todoNotes')">To-Do & Notes</button>
+        <button onclick="showSection('notesSection')"> Notes Organizer</button>
+    </nav>
+
+    <main>
+        
+        <section id="homeSection" class="content-section" style="display: block;">
+          
+          
+            <h1>Welcome to EduHelper 🎓</h1>
+            <p>
+              Your all-in-one academic assistant designed to keep you productive and organized.
+            </p>
+          
+            <div id="liveClock" style="margin: 1.5rem 0; font-size: 20px; font-weight: bold;"></div>
+          
+            <div style="background-color: #e9f5ff; padding: 20px; border-radius: 12px; max-width: 700px; margin: auto;">
+              <h3>💡 Study Tip of the Day</h3>
+              <p id="studyTip" style="font-size: 16px; margin-top: 10px;"></p>
+            </div>
+          </section>
+        
+        <section id="currencyConverter" class="content-section">
+            <h2>Currency Converter</h2>
+            <input type="number" id="currencyInput" placeholder="Enter amount">
+            <select id="currencyFrom">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="INR">INR</option>
+            </select>
+            to
+            <select id="currencyTo">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="INR">INR</option>
+            </select>
+            <button onclick="convertCurrency()">Convert</button>
+            <p id="currencyResult"></p>
+        </section>
+
+        <section id="professionalBackground" class="content-section">
+            <h2>Professional Background</h2>
+            <p>Welcome to the professional section of EduHelper. Here, you can explore career-related resources, professional skill-building tools, and productivity enhancements.</p>
+            <button onclick="showSection('careerGrowth')">Career Growth</button>
+            <button onclick="showSection('skillEnhancement')">Skill Enhancement</button>
+        </section>
+        
+        <section id="mathQuiz" class="content-section">
+            <h2>Math Quiz</h2>
+            <p>Solve the problem:</p>
+            <p id="mathQuestion"></p>
+            <input type="number" id="mathAnswer" placeholder="Your answer">
+            <button onclick="checkMathAnswer()">Submit</button>
+            <p id="mathFeedback"></p>
+        </section>
+        
+        <section id="keyboardTrainer" class="content-section">
+            <h2>Keyboard Shortcuts Trainer</h2>
+            <p>Guess the shortcut for: <span id="shortcutTask"></span></p>
+            <input type="text" id="shortcutInput" placeholder="Type shortcut">
+            <button onclick="checkShortcut()">Submit</button>
+            <p id="shortcutFeedback"></p>
+        </section>
+        
+        <section id="unitConverter" class="content-section">
+            <h2>Unit Converter</h2>
+            <select id="unitType">
+                <option value="length">Length</option>
+                <option value="weight">Weight</option>
+                <option value="temperature">Temperature</option>
+                <option value="time">Time</option>
+            </select>
+            <input type="number" id="unitInput" placeholder="Enter value">
+            <button onclick="convertUnit()">Convert</button>
+            <p id="conversionResult"></p>
+        </section>
+        
+        <section id="bmiCalculator" class="content-section">
+            <h2>BMI Calculator</h2>
+            <input type="number" id="bmiHeight" placeholder="Height (cm)">
+            <input type="number" id="bmiWeight" placeholder="Weight (kg)">
+            <button onclick="calculateBMI()">Calculate BMI</button>
+            <p id="bmiResult"></p>
+        </section>
+
+        <section id="stopwatchTimer" class="content-section">
+            <h2>Stopwatch & Timer</h2>
+        
+            <div id="stopwatch">
+                <h3>Stopwatch</h3>
+                <p id="stopwatchDisplay">00:00:00</p>
+                <button onclick="startStopwatch()">Start</button>
+                <button onclick="pauseStopwatch()">Pause</button>
+                <button onclick="resetStopwatch()">Reset</button>
+            </div>
+        
+            <div id="timer">
+                <h3>Timer</h3>
+                <input type="number" id="timerInput" placeholder="Enter seconds">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="resetTimer()">Reset</button>
+                <p id="timerDisplay">00:00</p>
+            </div>
+        </section>
+        <div id="calculatorSection" class="content-section">
+            <h2>🧮 Calculator</h2>
+            <div class="calculator">
+                <input type="text" id="calcDisplay" readonly>
+                <div class="calc-grid">
+                    <button onclick="clearCalc()">AC</button>
+                    <button onclick="appendToCalc('(')">(</button>
+                    <button onclick="appendToCalc(')')">)</button>
+                    <button onclick="appendToCalc('/')">÷</button>
+        
+                    <button onclick="appendToCalc('7')">7</button>
+                    <button onclick="appendToCalc('8')">8</button>
+                    <button onclick="appendToCalc('9')">9</button>
+                    <button onclick="appendToCalc('*')">×</button>
+        
+                    <button onclick="appendToCalc('4')">4</button>
+                    <button onclick="appendToCalc('5')">5</button>
+                    <button onclick="appendToCalc('6')">6</button>
+                    <button onclick="appendToCalc('-')">−</button>
+        
+                    <button onclick="appendToCalc('1')">1</button>
+                    <button onclick="appendToCalc('2')">2</button>
+                    <button onclick="appendToCalc('3')">3</button>
+                    <button onclick="appendToCalc('+')">+</button>
+        
+                    <button onclick="appendToCalc('0')">0</button>
+                    <button onclick="appendToCalc('.')">.</button>
+                    <button onclick="calculateResult()">=</button>
+                </div>
+            </div>
+        </div>
+        
+        
+        <section id="todoNotes" class="content-section">
+            <h2>To-Do List & Notes</h2>
+            <input type="text" id="newListName" placeholder="New list name">
+            <button onclick="createNewList()">Create List</button>
+            <div id="listsContainer"></div>
+        </section>
+        
+    <!-- Multiple Notes Section -->
+<div id="notesSection" class="content-section">
+    <h2>📝 Notes Organizer</h2>
+    <input type="text" id="noteTitle" placeholder="Note Title" />
+    <textarea id="noteContent" placeholder="Write your note..."></textarea>
+    <button onclick="saveNote()">Save Note</button>
+
+    <div id="notesContainer"></div>
+</div>
+
+    </main>
+    
+    <script src="EduHelper.js"></script>
+ </font>
+</body>
+</html>
