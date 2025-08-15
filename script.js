@@ -116,28 +116,61 @@ document.addEventListener("DOMContentLoaded", function () {
     window.deleteList = deleteList;
     renderLists();
 
-    // Currency Converter
-    function convertCurrency() {
-        const exchangeRates = {
-            "USD": { "EUR": 0.91, "GBP": 0.76, "INR": 83.00, "USD": 1 },
-            "EUR": { "USD": 1.10, "GBP": 0.84, "INR": 91.20, "EUR": 1 },
-            "GBP": { "USD": 1.31, "EUR": 1.19, "INR": 108.50, "GBP": 1 },
-            "INR": { "USD": 0.012, "EUR": 0.011, "GBP": 0.0092, "INR": 1 }
-        };
-
-        let amount = parseFloat(document.getElementById("currencyInput").value);
-        let fromCurrency = document.getElementById("currencyFrom").value;
-        let toCurrency = document.getElementById("currencyTo").value;
+    // Currency Converter with Live Rates
+    async function convertCurrency() {
+        const amount = parseFloat(document.getElementById("currencyInput").value);
+        const fromCurrency = document.getElementById("currencyFrom").value;
+        const toCurrency = document.getElementById("currencyTo").value;
 
         if (isNaN(amount) || amount <= 0) {
             document.getElementById("currencyResult").innerText = "Enter a valid amount!";
             return;
         }
 
-        let convertedAmount = amount * exchangeRates[fromCurrency][toCurrency];
-        document.getElementById("currencyResult").innerText =
-            `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+        try {
+            const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+            const data = await res.json();
+
+            if (!data.rates[toCurrency]) {
+                document.getElementById("currencyResult").innerText = "Currency not supported!";
+                return;
+            }
+
+            const convertedAmount = amount * data.rates[toCurrency];
+            document.getElementById("currencyResult").innerText =
+                `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+        } catch (error) {
+            document.getElementById("currencyResult").innerText = "Error fetching live rates!";
+        }
     }
+
+    async function populateCurrencies() {
+        try {
+            const res = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
+            const data = await res.json();
+            const currencyCodes = Object.keys(data.rates);
+
+            const fromSelect = document.getElementById("currencyFrom");
+            const toSelect = document.getElementById("currencyTo");
+
+            fromSelect.innerHTML = "";
+            toSelect.innerHTML = "";
+
+            currencyCodes.forEach(code => {
+                let option1 = new Option(code, code);
+                let option2 = new Option(code, code);
+                fromSelect.add(option1);
+                toSelect.add(option2);
+            });
+
+            fromSelect.value = "USD";
+            toSelect.value = "INR";
+        } catch {
+            console.error("Failed to load currency list.");
+        }
+    }
+
+    populateCurrencies();
     window.convertCurrency = convertCurrency;
 
     // Section Switcher
@@ -194,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let result = "";
         if (unitType === "length") result = `${value} meters = ${value * 3.281} feet`;
         else if (unitType === "weight") result = `${value} kg = ${value * 2.205} lbs`;
-        else if (unitType === "temperature") result = `${value}°C = ${(value * 9/5) + 32}°F`;
+        else if (unitType === "temperature") result = `${value}°C = ${(value * 9 / 5) + 32}°F`;
         else if (unitType === "time") result = `${value} hours = ${value * 60} minutes`;
         document.getElementById("conversionResult").innerText = result;
     }
