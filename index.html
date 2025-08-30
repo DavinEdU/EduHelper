@@ -58,18 +58,20 @@
   </section>
 
   <!-- Currency Converter -->
-  <section id="currencyConverter" class="content-section">
-    <h2>Currency Converter</h2>
-    <div class="row">
-      <input type="number" id="currencyAmount" placeholder="Enter amount" />
-      <select id="currencyFrom"></select>
-      <span class="muted">to</span>
-      <select id="currencyTo"></select>
-      <button id="convertCurrency">Convert</button>
-    </div>
-    <p id="currencyResult" class="result"></p>
-    <small id="currencyUpdated" class="muted"></small>
-  </section>
+ <section id="currencyConverter" class="content-section">
+  <h2>Currency Converter</h2>
+  <div class="row">
+    <input type="number" id="currencyAmount" placeholder="Enter amount" />
+    <select id="currencyFrom"></select>
+    <span class="muted">to</span>
+    <select id="currencyTo"></select>
+    <button id="convertCurrency">Convert</button>
+  </div>
+  <p id="currencyResult" class="result"></p>
+  <small id="currencyUpdated" class="muted"></small>
+  <p id="currencyLoading" class="muted" style="display:none;">Fetching rates...</p>
+</section>
+
 
   <!-- Math Quiz -->
   <section id="mathQuiz" class="content-section">
