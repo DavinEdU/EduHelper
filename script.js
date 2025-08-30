@@ -618,27 +618,111 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =======================
      CURRENCY CONVERTER (Simple static)
   ======================= */
-  const currencyRates = { USD: 1, INR: 83, EUR: 0.92, GBP: 0.79, JPY: 145 };
-  const fromSel = document.getElementById("currencyFrom");
-  const toSel = document.getElementById("currencyTo");
-  if (fromSel && toSel) {
-    Object.keys(currencyRates).forEach(c => {
-      fromSel.add(new Option(c, c));
-      toSel.add(new Option(c, c));
-    });
-    fromSel.value = "USD";
-    toSel.value = "INR";
+  // ------------------ Currency Converter ------------------
+const amountInput = document.getElementById("currencyAmount");
+const fromSel = document.getElementById("currencyFrom");
+const toSel = document.getElementById("currencyTo");
+const resultEl = document.getElementById("currencyResult");
+const updatedEl = document.getElementById("currencyUpdated");
+const loadingEl = document.getElementById("currencyLoading");
+const convertBtn = document.getElementById("convertCurrency");
+
+// Supported currencies
+const supportedCurrencies = ["USD", "INR", "EUR", "GBP", "JPY"];
+
+// Populate dropdowns
+if (fromSel && toSel) {
+  supportedCurrencies.forEach(c => {
+    let opt1 = new Option(c, c);
+    let opt2 = new Option(c, c);
+    fromSel.add(opt1);
+    toSel.add(opt2);
+  });
+  fromSel.value = "USD";
+  toSel.value = "INR";
+}
+
+let latestRates = {};
+
+// Load backup from localStorage
+function loadBackupRates() {
+  const saved = localStorage.getItem("currencyRates");
+  if (saved) {
+    const data = JSON.parse(saved);
+    latestRates = data.rates;
+    if (updatedEl) updatedEl.textContent = `⚠️ Using saved rates (${data.time})`;
   }
-  window.convertCurrency = function () {
-    const amt = parseFloat(document.getElementById("currencyAmount").value);
-    const from = fromSel.value;
-    const to = toSel.value;
-    if (isNaN(amt)) return;
-    const usdAmt = amt / currencyRates[from];
-    const out = usdAmt * currencyRates[to];
-    document.getElementById("currencyResult").innerText = `${amt} ${from} = ${out.toFixed(2)} ${to}`;
-    document.getElementById("currencyUpdated").innerText = "Rates are static demo values.";
+}
+
+// Save backup
+function saveBackupRates(rates) {
+  const data = {
+    rates: rates,
+    time: new Date().toLocaleString()
   };
+  localStorage.setItem("currencyRates", JSON.stringify(data));
+}
+
+// Fetch rates from Frankfurter
+async function fetchRates(base = "USD") {
+  try {
+    if (loadingEl) loadingEl.style.display = "block";
+
+    // Frankfurter API (supports EUR, USD, GBP, JPY, INR, etc.)
+    const res = await fetch(`https://api.frankfurter.app/latest?from=${base}`);
+    const data = await res.json();
+
+    if (data.rates) {
+      latestRates = { ...data.rates, [base]: 1 }; // add base = 1
+      saveBackupRates(latestRates);
+      if (updatedEl) updatedEl.textContent = `Rates updated: ${new Date().toLocaleTimeString()}`;
+    } else {
+      throw new Error("No rates in response");
+    }
+  } catch (err) {
+    console.warn("⚠️ API fetch failed, using backup", err);
+    loadBackupRates();
+  } finally {
+    if (loadingEl) loadingEl.style.display = "none";
+  }
+}
+
+// Convert
+function convertCurrency() {
+  const amount = parseFloat(amountInput.value);
+  const from = fromSel.value;
+  const to = toSel.value;
+
+  if (isNaN(amount) || amount <= 0) {
+    resultEl.textContent = "⚠️ Please enter a valid amount.";
+    return;
+  }
+
+  if (!latestRates[to] || !latestRates[from]) {
+    resultEl.textContent = "❌ No rates available. Please check your connection.";
+    return;
+  }
+
+  const rate = latestRates[to] / latestRates[from];
+  const result = amount * rate;
+
+  resultEl.textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+}
+
+// Event
+if (convertBtn) convertBtn.addEventListener("click", convertCurrency);
+
+// Load backup immediately
+loadBackupRates();
+
+// First fetch
+fetchRates("USD");
+
+// Auto-refresh every 1 min
+setInterval(() => {
+  fetchRates("USD");
+}, 60000);
+
 
   /* =======================
      HELPERS
