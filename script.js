@@ -455,15 +455,25 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sideMenu) sideMenu.classList.remove("open");
   };
 
-  /* =======================
-     CLOCK
-  ======================= */
-  function updateClock() {
-    const el = document.getElementById("liveClock");
-    if (el) el.textContent = new Date().toLocaleTimeString();
+ /* =======================
+   CLOCK
+======================= */
+function updateClock() {
+  const el = document.getElementById("liveClock");
+  if (el) {
+    el.textContent = new Date().toLocaleTimeString([], {
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    });
   }
-  setInterval(updateClock, 1000);
-  updateClock();
+}
+
+// Call once immediately, then keep updating
+setInterval(updateClock, 1000);
+updateClock();
+
 
   /* =======================
      MATH QUIZ
@@ -740,3 +750,4 @@ setInterval(() => {
   }
 
 }); // DOMContentLoaded END
+
