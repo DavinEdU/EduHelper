@@ -9,7 +9,7 @@
 </p> -->
 
 <p align="center">
-  <a href="https://davinedu.github.io/Eduhelper/">🌐 Live Demo</a> •
+  <a href="https://davinedu.github.io/EduHelper/">🌐 Live Demo</a> •
   <a href="#-features">Features</a> •
   <a href="#-installation">Installation</a> •
   <a href="#-usage">Usage</a> •
