@@ -6,7 +6,7 @@
   <a href="https://davinedu.github.io/Eduhelper/">
     <img src="assets/preview.png" alt="EduHelper Preview" width="800">
   </a>
-</p> -->
+</p> -->  
 
 <p align="center">
   <a href="https://davinedu.github.io/EduHelper/">🌐 Live Demo</a> •
