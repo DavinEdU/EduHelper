@@ -32,7 +32,14 @@ EduHelper includes the following modules and utilities:
 - There’s a **Dark Mode / Home toggle** for light/dark appearance.
 
 ---
+# Clone this repository
+git clone https://github.com/davinedu/EduHelper.git
 
+# Open the project folder
+cd EduHelper
+
+# Open index.html in your browser
+---
 ![Stars](https://img.shields.io/github/stars/DavinEdU/Eduhelper?style=social)
 ![Forks](https://img.shields.io/github/forks/DavinEdU/Eduhelper?style=social)
 ![License](https://img.shields.io/github/license/DavinEdU/Eduhelper)
