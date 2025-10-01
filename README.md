@@ -2,11 +2,11 @@
 
 > 🚀 *Your all-in-one academic assistant* — A free, open-source web app to boost study efficiency, stay organized, and improve learning outcomes.  
 
-<p align="center">
+<!-- <p align="center">
   <a href="https://davinedu.github.io/Eduhelper/">
     <img src="assets/preview.png" alt="EduHelper Preview" width="800">
   </a>
-</p>
+</p> -->
 
 <p align="center">
   <a href="https://davinedu.github.io/Eduhelper/">🌐 Live Demo</a> •
