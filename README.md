@@ -12,8 +12,7 @@
   <a href="https://davinedu.github.io/EduHelper/">🌐 Live Demo</a> •
   <a href="#-features">Features</a> •
   <a href="#-installation">Installation</a> •
-  <a href="#-usage">Usage</a> •
-  <a href="#-contributing">Contributing</a>
+  <a href="#-license">License</a>
 </p>
 
 ---
@@ -62,6 +61,14 @@ EduHelper includes the following modules and utilities:
 
 Clone this repository and open it locally:  
 
+---
+
+##📄  License
+
+This project is licensed under the MIT License — free to use, modify, and distribute.
+
+---
+
 ```bash
 # Clone the repository
 git clone https://github.com/DavinEdU/EduHelper.git
@@ -79,3 +86,5 @@ http-server .
 
 
 Then visit http://localhost:8080
+
+<p align="center">Made with ❤️ by <a href="https://github.com/DavinEdU">DavinEdU</a></p> ```
