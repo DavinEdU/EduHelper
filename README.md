@@ -63,9 +63,9 @@ Clone this repository and open it locally:
 
 ---
 
-📄 License
+## 📄 License
 
-This project is licensed under the MIT License — free to use, modify, and distribute.
+This project is licensed under the [MIT License](LICENSE) — free to use, modify, and distribute.
 
 ---
 
