@@ -87,4 +87,4 @@ http-server .
 
 Then visit http://localhost:8080
 
-<p align="center">Made with ❤️ by <a href="https://github.com/DavinEdU">DavinEdU</a></p> ```
+ 
