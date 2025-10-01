@@ -1,5 +1,11 @@
 # 📘 EduHelper  
 
+
+![Stars](https://img.shields.io/github/stars/DavinEdU/EduHelper?style=social)
+![Forks](https://img.shields.io/github/forks/DavinEdU/EduHelper?style=social)
+![License](https://img.shields.io/github/license/DavinEdU/EduHelper)
+![Website](https://img.shields.io/website-up-down-green-red/https/davinedu.github.io/EduHelper.svg)
+
 > 🚀 *Your all-in-one academic assistant* — A free, open-source web app to boost study efficiency, stay organized, and improve learning outcomes.  
 
 <!-- <p align="center">
@@ -86,5 +92,10 @@ http-server .
 
 
 Then visit http://localhost:8080
+
+---
+
+```
+<p align="center">Made with ❤️ by <a href="https://github.com/DavinEdU">DavinEdU</a></p>
 
  
