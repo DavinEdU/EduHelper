@@ -33,12 +33,7 @@ EduHelper includes the following modules and utilities:
 
 ---
 
-## 🚀 Getting Started
-
-To run the project locally or deploy it:
-
-1. Clone this repository:
-
-   ```sh
-   git clone https://github.com/yourusername/EduHelper.git
-   cd EduHelper
+![Stars](https://img.shields.io/github/stars/DavinEdU/Eduhelper?style=social)
+![Forks](https://img.shields.io/github/forks/DavinEdU/Eduhelper?style=social)
+![License](https://img.shields.io/github/license/DavinEdU/Eduhelper)
+![Website](https://img.shields.io/website-up-down-green-red/https/davinedu.github.io/Eduhelper.svg)
